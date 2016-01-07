@@ -7,9 +7,9 @@ Packer configuration that creates an Ubuntu 14.04 AMI with Java8 installed as th
 
 ###Required
 
-* `aws_access_key` - Access key of the AWS where the AMI will be created.
+* `aws_access_key` - Access key of the AWS account where the AMI will be created.
 
-* `aws_secret_key` - Secret key of the AWS where the AMI will be created.
+* `aws_secret_key` - Secret key of the AWS account where the AMI will be created.
 
 * `aws_region` - Name of the AWS region where the AMI will be created.
 
