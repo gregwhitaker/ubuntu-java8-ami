@@ -1,0 +1,38 @@
+
+- name: Install add-apt-repostory
+  apt: name=software-properties-common state=latest
+
+- name: Add Oracle Apt Repository
+  apt_repository: repo='ppa:webupd8team/java' update_cache=yes
+
+- name: Accept Oracle License
+  shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | tee /etc/oracle-java-8-licence-acceptance | /usr/bin/debconf-set-selections
+  args:
+    creates: /etc/oracle-java-8-licence-acceptance
+
+- name: Install Oracle Java 8
+  apt: name={{item}} state=latest
+  with_items:
+    - oracle-java8-installer
+    - ca-certificates
+    - oracle-java8-set-default
+
+- name: Symlink Default Java
+  file: src=/usr/lib/jvm/java-8-oracle dest=/usr/lib/jvm/default-java state=link 
+
+- name: Set JAVA_HOME
+  lineinfile: dest=/etc/environment
+              regexp=''
+              insertafter=EOF
+              line="JAVA_HOME=/usr/lib/jvm/default-java"
+
+- name: Verify Java Version
+  action: shell /usr/bin/java -version
+  register: java
+  changed_when: no
+  tags:
+    - verify
+
+- assert: 
+    that: 
+      - "'java version' in java.stderr"

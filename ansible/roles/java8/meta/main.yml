@@ -1,0 +1,9 @@
+---
+dependencies: []
+
+galaxy_info:
+   author: "Greg Whitaker"
+   description: "Install Oracle Java 8"
+   license: "Apache"
+   categories:
+      - development
