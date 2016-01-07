@@ -2,7 +2,10 @@
   "variables": {
     "aws_access_key": null,
     "aws_secret_key": null,
-    "aws_region": null
+    "aws_region": null,
+    "aws_vpc_id": "",
+    "aws_subnet_id": "",
+    "ssh_private_ip": "true"
   },
   "builders": [{
     "type": "amazon-ebs",
@@ -12,9 +15,9 @@
     "source_ami": "ami-5189a661",
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
-    "ssh_private_ip": true,
-    "vpc_id": "vpc-9ba084fe",
-    "subnet_id": "subnet-927a32e5",
+    "ssh_private_ip": "{{user `ssh_private_ip`}}",
+    "vpc_id": "{{user `aws_vpc_id`}}",
+    "subnet_id": "{{user `aws_subnet_id`}}",
     "ami_name": "base-ubuntu-java8_{{timestamp}}"
   }],
   "provisioners": [
