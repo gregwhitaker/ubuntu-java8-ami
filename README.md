@@ -24,19 +24,19 @@ Packer configuration that creates an Ubuntu 14.04 AMI with Java8 installed as th
 ###Create AMI in the Default VPC
 
 ```
-$ packer build -var 'aws_access_key={account access key} \
-     -var 'aws_secret_key={account secret key} \
-     -var 'aws_region={aws region}
+$ packer build -var 'aws_access_key={account access key}' \
+     -var 'aws_secret_key={account secret key}' \
+     -var 'aws_region={aws region}'
      packer.json
 ``` 
 
 ###Create AMI in a Specific VPC
 
 ```
-$ packer build -var 'aws_access_key={account access key} \
-     -var 'aws_secret_key={account secret key} \
-     -var 'aws_region={aws region} \
-     -var 'aws_vpc_id={aws vpc id} \
-     -var 'aws_subnet_id={aws subnet id} \
+$ packer build -var 'aws_access_key={account access key}' \
+     -var 'aws_secret_key={account secret key}' \
+     -var 'aws_region={aws region}' \
+     -var 'aws_vpc_id={aws vpc id}' \
+     -var 'aws_subnet_id={aws subnet id}' \
      packer.json
 ``` 
